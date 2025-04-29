@@ -1,0 +1,43 @@
+.main-page{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFFFFF;
+    background-image: url('../../assets/LogoFuria.svg');
+    background-position: center;
+    background-size: 45vh;
+    background-repeat: no-repeat;
+    background-position: 5% 60vh;
+    min-height: 100vh;
+}
+
+.main-page h1{
+    font-family: 'Koulen', sans-serif;
+    font-size:80px;
+    color: #FFFFFF;
+    margin-bottom: 0px;
+    -webkit-text-stroke: 0.1px #696c01;
+}
+
+.main-page h2 {
+    font-family: 'Kulim Park', sans-serif;
+    font-size: 28px;
+    color: #FFFFFF;
+    margin-top: 0px;
+}
+
+.main-page p{
+    font-family: 'Kulim Park', sans-serif;
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+.main-page h3{
+    font-family: 'Lacquer', sans-serif;
+    font-size: 32px;
+    width: 30%;
+    text-align: center;
+    -webkit-text-stroke: 0.1px #F6FF00;
+    color: #000000;
+}
