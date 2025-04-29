@@ -1,5 +1,6 @@
 .main-page{
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,15 +11,47 @@
     background-repeat: no-repeat;
     background-position: 5% 60vh;
     min-height: 100vh;
+    padding-bottom: 5%;
 }
 
-.main-page h1{
+.title {
     font-family: 'Koulen', sans-serif;
-    font-size:80px;
+    font-size: 80px;
     color: #FFFFFF;
-    margin-bottom: 0px;
-    -webkit-text-stroke: 0.1px #696c01;
-}
+    margin: 0px;
+    text-shadow:
+      2px 2px 4px rgba(0, 0, 0, 0.6),     
+      0 0 10px #FFD700;
+  }
+  
+
+.fury-fire {
+    color: #FFFFFF;
+    text-shadow:
+      0 0 5px #ff9900,
+      0 0 10px #ff6600,
+      0 0 15px #ff3300,
+      0 0 20px #ff0000;
+    animation: flameFlicker 1s infinite alternate;
+  }
+  
+  @keyframes flameFlicker {
+    0% {
+      text-shadow:
+        0 0 4px #ff9900,
+        0 0 8px #ff6600,
+        0 0 12px #ff3300,
+        0 0 16px #ff0000;
+    }
+    100% {
+      text-shadow:
+        0 0 6px #ffff33,
+        0 0 12px #ff9900,
+        0 0 18px #ff6600,
+        0 0 24px #ff3300;
+    }
+  }
+  
 
 .main-page h2 {
     font-family: 'Kulim Park', sans-serif;
@@ -40,4 +73,36 @@
     text-align: center;
     -webkit-text-stroke: 0.1px #F6FF00;
     color: #000000;
+}
+
+.cadastro-button {
+  width: 300px; 
+  height: 250px; 
+  background-color: #F6FF00;
+  border: none;
+  cursor: pointer;
+  font-family: 'Lacquer'; 
+  font-size: 20px;
+
+  mask-image: url('../../assets/pichacao.svg');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+
+  -webkit-mask-image: url('../../assets/pichacao.svg');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+
+  padding-bottom: 38%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-top: -10%;
+
+  transition: transform 0.2s ease;
+}
+
+.cadastro-button:hover {
+  transform: scale(1.05);
 }

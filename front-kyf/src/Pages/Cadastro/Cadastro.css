@@ -1,0 +1,49 @@
+.cadastro-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;;
+    width: 100vw;
+    height: 100%;
+    color: #FFFFFF;
+    margin-bottom: 5%;
+}
+.cadastro-page .title{
+    margin-bottom: -1rem;
+}
+
+.cadastro-page h2{
+    font-family: 'Inter';
+    font-size: 32px;
+}
+
+.cadastro-container{
+    width: 79%;
+}
+.cadastro-form{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    padding-inline: 5% ;
+}
+
+.cadastro-form label{
+    font-family: 'Inter';
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.cadastro-form input{
+    font-family: 'Inter';
+    width: 90%;
+    border-radius: 10px;
+    border: 1px solid #cfcece;
+    height: 2.8rem;
+    margin-bottom: 0.9rem;
+    padding-inline: 1rem;
+    font-size: 1.1rem;
+}
+
+.rg-buttons{
+    margin-bottom: 0.9rem;
+}
