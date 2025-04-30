@@ -8,6 +8,16 @@
     margin-bottom: 5%;
 }
 
+.interesses-page .title{
+    margin-bottom: -1rem;
+}
+
+.interesses-page h2{
+    font-family: 'Inter';
+    font-size: 32px;
+    margin-bottom: 0;
+}
+
 .interesses-container{
     width: 79%;
 }
@@ -19,6 +29,22 @@
     width: 100%;
     padding-inline: 5% ;
 }
+
+.game{
+    font-family: 'Lacquer' !important;
+}
+
+.interesses-forms p{
+    font-family: 'Inter';
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.interesses-forms input{
+    font-family: 'Inter';
+    font-size: 1.1rem;
+}
+
 
 .interesses-radio{
     width: 100%;

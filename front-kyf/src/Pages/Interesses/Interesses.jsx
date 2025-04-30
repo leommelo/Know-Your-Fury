@@ -2,15 +2,13 @@ import React, { useState } from "react";
 import './Interesses.css'
 import Header from '../../components/Header/Header'
 import DragAndDropLista from '../../components/DragAndDropList/DragAndDropList'
-import InputAdd from '../../components/InputAdd/InputAdd'
+import BlocoPergunta from "../../components/BlocoPergunta/BlocoPergunta";
+
 
 
 const Interesses = () => {
-    const [resposta, setResposta] = useState(null);
-
-    const handleChangeResposta = (e) => {
-        setResposta(e.target.value);
-    };
+    const [respostaEventos, setrespostaEventos] = useState(null);
+    const [respostaProdutos, setRespostaProdutos] = useState(null);
 
     return (
         <div className='interesses-page'>
@@ -19,16 +17,23 @@ const Interesses = () => {
             <div className='interesses-container'>
                 <h2>Interesses:</h2>
                 <div className='interesses-forms'>
-                    <p>Quais jogos você mais acompanha?</p>
+                    <p>Dê um rank para seus jogos favoritos</p>
                     <DragAndDropLista />
-                    <p>Participou de eventos de E-sports?</p>
-                    <div className='interesses-radio'>
-                        <input type="radio" id="sim" name="evento-esports" value="sim" onChange={handleChangeResposta}/>
-                        <label htmlFor="sim">Sim</label>
-                        <input type="radio" id="nao" name="evento-esports" value="nao" onChange={handleChangeResposta}/>
-                        <label htmlFor="nao">Não</label>
-                        {resposta === "sim" && <InputAdd />}
-                    </div>
+                    <BlocoPergunta
+                        pergunta="Participou de eventos de E-sports?"
+                        name="evento-esports"
+                        resposta={respostaEventos}
+                        setResposta={setrespostaEventos}
+                        placeholder="Ex.: Final CBLOL 2024/2"
+                    />
+
+                    <BlocoPergunta
+                        pergunta="Comprou produtos de E-sports nos últimos 5 anos?"
+                        name="comprou-produtos"
+                        resposta={respostaProdutos}
+                        setResposta={setRespostaProdutos}
+                        placeholder="Ex.: Camiseta FURIA CS2"
+                    />
                 </div>
             </div>
         </div>

@@ -18,6 +18,8 @@ const itensIniciais = [
   { id: "1", nome: "League of Legends" },
   { id: "2", nome: "Valorant" },
   { id: "3", nome: "CS2" },
+  { id: "4", nome: "Rocket League" },
+  { id: "5", nome: "Rainbow Six" },
 ];
 
 export default function DragAndDropLista() {
@@ -55,9 +57,9 @@ function SortableItem({ id, nome, prioridade }) {
     transform: CSS.Transform.toString(transform),
     transition,
     paddingInline: 20,
-    marginBottom: 10,
-    border: "1px solid #F6FF00",
-    borderRadius: 8,
+    marginBottom: 0,
+    border: "1px solid #000000",
+    borderRadius: 10,
     backgroundColor: "#FFFFFF",
     cursor: "grab",
     color: "#000000",
@@ -70,8 +72,8 @@ function SortableItem({ id, nome, prioridade }) {
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <p>{nome}</p>
-      <p>{prioridade}º</p>
+      <p className="game">{nome}</p>
+      <p className="game">{prioridade}º</p>
     </div>
   );
 }
