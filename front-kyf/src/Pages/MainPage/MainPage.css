@@ -75,34 +75,3 @@
     color: #000000;
 }
 
-.cadastro-button {
-  width: 300px; 
-  height: 250px; 
-  background-color: #F6FF00;
-  border: none;
-  cursor: pointer;
-  font-family: 'Lacquer'; 
-  font-size: 20px;
-
-  mask-image: url('../../assets/pichacao.svg');
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
-
-  -webkit-mask-image: url('../../assets/pichacao.svg');
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  -webkit-mask-size: contain;
-
-  padding-bottom: 38%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  margin-top: -10%;
-
-  transition: transform 0.2s ease;
-}
-
-.cadastro-button:hover {
-  transform: scale(1.05);
-}

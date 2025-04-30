@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../../components/Header/Header'
 import './MainPage.css'
 import { useNavigate } from 'react-router-dom'
+import SprayButton from '../../components/SprayButton/SprayButton'
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -15,11 +16,7 @@ const MainPage = () => {
         <p>Cadastre-se, monte seu perfil de fã e desbloqueie sua carteirinha excluisiva.</p>
         <p>Eventos, brindes, surpresas e muito mais te esperam.</p>
         <h3>JUNTE-SE AOS FÃS QUE FAZEM PARTE DA NOSSA HISTÓRIA!</h3>
-        <a href="">
-          <button className='cadastro-button' onClick={() => navigate('/cadastro')}>
-                Quero me cadastrar
-            </button>
-        </a>
+        <SprayButton text={"Quero me cadastrar"} onClick={() => navigate("/cadastro")}/>
     </div>
   )
 }

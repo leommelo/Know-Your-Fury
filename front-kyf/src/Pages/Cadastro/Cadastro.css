@@ -47,3 +47,10 @@
 .rg-buttons{
     margin-bottom: 0.9rem;
 }
+
+.cadastro-button-container{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

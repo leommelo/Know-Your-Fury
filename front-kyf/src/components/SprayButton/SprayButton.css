@@ -1,0 +1,42 @@
+.spray-button {
+    position: relative;
+    width: 300px;
+    height: 250px;
+    background-color: #F6FF00;
+    border: none;
+    cursor: pointer;
+    font-family: 'Lacquer';
+    font-size: 20px;
+  
+    mask-image: url('../../assets/pichacao.svg');
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  
+    -webkit-mask-image: url('../../assets/pichacao.svg');
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+  
+    padding-bottom: 8%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  
+    transition: transform 0.2s ease;
+  }
+  
+  .spray-button:hover {
+    transform: scale(1.05);
+  }
+  
+  .spray-button-text {
+    position: absolute;
+    top: 28%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    text-align: center;
+    pointer-events: none; /* impede que o texto bloqueie o clique */
+  }
+  
