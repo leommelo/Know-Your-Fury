@@ -1,0 +1,25 @@
+.interesses-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;;
+    width: 100vw;
+    height: 100%;
+    color: #FFFFFF;
+    margin-bottom: 5%;
+}
+
+.interesses-container{
+    width: 79%;
+}
+
+.interesses-forms{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    padding-inline: 5% ;
+}
+
+.interesses-radio{
+    width: 100%;
+}

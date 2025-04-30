@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Header from '../../components/Header/Header'
 import './Cadastro.css'
 import { Button } from '@mui/material'
@@ -9,6 +10,8 @@ import { convertToGrayscale } from '../../Utils/imageUtils';
 import SprayButton from '../../components/SprayButton/SprayButton'
 
 const Cadastro = () => {
+    const navigate = useNavigate();
+
     const [rgFrente, setRgFrente] = useState(null);
     const [rgVerso, setRgVerso] = useState(null);
     const [textoFrente, setTextoFrente] = useState('Frente do RG');
@@ -48,7 +51,7 @@ const Cadastro = () => {
 
         if (validateRGData(textoCompleto, formData.cpf, formData.name)) {
             alert("Documento válido! Prosseguir com o cadastro.");
-            // aqui você pode enviar os dados para o backend
+            navigate("/interesses")
         } else {
             alert("Não foi possível validar o RG. Verifique a imagem.");
         }
