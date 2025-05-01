@@ -3,3 +3,31 @@ node_modules/
 
 # Ignorar arquivos de ambiente
 .env
+
+# Ignorar logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignorar diretórios do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos de build
+dist/
+build/
+
+# Ignorar arquivos de IDEs
+.vscode/
+.idea/
+*.swp
+
+# Ignorar arquivos de teste
+coverage/
+*.lcov
+
+# Ignorar arquivos temporários
+*.tmp
+*.temp
