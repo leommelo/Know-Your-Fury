@@ -22,7 +22,7 @@ const itensIniciais = [
   { id: "5", nome: "Rainbow Six" },
 ];
 
-export default function DragAndDropLista() {
+export default function DragAndDropLista({onListaAtualizada }) {
   const [itens, setItens] = useState(itensIniciais);
 
   const sensors = useSensors(useSensor(PointerSensor));
@@ -34,7 +34,11 @@ export default function DragAndDropLista() {
     const oldIndex = itens.findIndex((i) => i.id === active.id);
     const newIndex = itens.findIndex((i) => i.id === over.id);
 
-    setItens((items) => arrayMove(items, oldIndex, newIndex));
+    setItens((items) => {
+      const novaLista = arrayMove(items, oldIndex, newIndex);
+      onListaAtualizada?.(novaLista); 
+      return novaLista;
+    });
   };
 
   return (

@@ -1,12 +1,38 @@
-.interesses-page{
+.interesses-page {
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;;
+    align-items: center;
     width: 100vw;
     height: 100%;
     color: #FFFFFF;
     margin-bottom: 5%;
+    overflow: hidden; 
+    z-index: 0;
 }
+
+.interesses-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: 
+        url('../../assets/garras.png'),
+        url('../../assets/garras.png'),
+        url('../../assets/garras.png'),
+        url('../../assets/garras.png'),
+        url('../../assets/garras.png'),
+        url('../../assets/garras.png');
+    background-size: 300px auto, 280px auto, 200px auto, 230px auto, 270px auto, 200px auto;
+    background-position: 20% 20%, 70% 40%, 40% 89%, 5% 70%, 90% 100%, 70% 60%;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    z-index: -1;
+}
+
 
 .interesses-page .title{
     margin-bottom: -1rem;
@@ -47,5 +73,14 @@
 
 
 .interesses-radio{
+    width: 100%;
+}
+
+.grid-redes{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 4rem;
     width: 100%;
 }
