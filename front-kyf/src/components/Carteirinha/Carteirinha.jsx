@@ -32,6 +32,7 @@ const Carteirinha = forwardRef(({ nome, score, foto, nasc, id }, ref) => {
       >
         <img
           src={LogoFuria}
+          crossOrigin="anonymous"
           alt="Logo FURIA"
           style={{ width: 60, position: 'absolute', top: 16, left: 16 }}
         />
