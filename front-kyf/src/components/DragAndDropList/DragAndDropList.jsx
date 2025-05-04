@@ -16,8 +16,11 @@ import { CSS } from "@dnd-kit/utilities";
 
 export default function DragAndDropLista({ onListaAtualizada, jogos }) {
   const [itens, setItens] = useState(jogos);
-
   const sensors = useSensors(useSensor(PointerSensor));
+
+  useEffect(() => {
+    setItens(jogos);
+  }, [jogos]);
 
   const handleDragEnd = (event) => {
     const { active, over } = event;
@@ -26,16 +29,11 @@ export default function DragAndDropLista({ onListaAtualizada, jogos }) {
     const oldIndex = itens.findIndex((i) => i.id === active.id);
     const newIndex = itens.findIndex((i) => i.id === over.id);
 
-    setItens((items) => arrayMove(items, oldIndex, newIndex));
+    const newItens = arrayMove([...itens], oldIndex, newIndex);
+    setItens(newItens);
+    
+    onListaAtualizada(newItens);
   };
-
-  useEffect(() => {
-    onListaAtualizada(itens);
-  }, [itens, onListaAtualizada]);
-
-  useEffect(() => {
-    setItens(jogos);
-  }, [jogos]);
 
   return (
     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>

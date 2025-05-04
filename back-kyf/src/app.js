@@ -5,11 +5,14 @@ const userRoutes = require('./routes/userRoutes');
 const interesseRoutes = require('./routes/interesseRoutes');
 const socialAnalysis = require('./routes/socialAnalysis');
 const cors = require('cors');
+const path = require('path');
 
 app.use(cors());
 app.use(express.json());
 
-// Rotas
+const uploadsPath = path.join(__dirname, '..', 'uploads');
+app.use('/uploads', express.static(uploadsPath));
+
 app.use('/usuarios', userRoutes);
 app.use('/interesses', interesseRoutes);
 app.use('/social', socialAnalysis);

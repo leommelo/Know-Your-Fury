@@ -6,13 +6,13 @@ import { Button } from '@mui/material'
 import ImageIcon from '@mui/icons-material/Image'
 import { IMaskInput } from 'react-imask'
 import { extractTextFromImage, validateRGData } from '../../Utils/ocr';
-import { convertToGrayscale } from '../../Utils/imageUtils';
 import SprayButton from '../../components/SprayButton/SprayButton'
 import axios from 'axios';
 
 const Cadastro = () => {
     const navigate = useNavigate();
 
+    const [isLoading, setIsLoading] = useState(false);
     const [rgFrente, setRgFrente] = useState(null);
     const [rgVerso, setRgVerso] = useState(null);
     const [textoFrente, setTextoFrente] = useState('Frente do RG');
@@ -40,7 +40,7 @@ const Cadastro = () => {
             return;
         }
 
-        console.log("Dados do formulário:", formData);
+        setIsLoading(true);
 
         const textoFrente = await extractTextFromImage(rgFrente);
         const textoVerso = await extractTextFromImage(rgVerso);
@@ -59,10 +59,13 @@ const Cadastro = () => {
                 navigate("/interesses")
             }catch(error){
                 console.error("Erro ao salvar usuário:", error)
+            }finally{
+                setIsLoading(false);
             }
             
         } else {
             alert("Não foi possível validar o RG. Verifique a imagem.");
+            setIsLoading(false);
         }
     };
     
@@ -159,7 +162,7 @@ const Cadastro = () => {
                 </form>
             </div>
             <div className='cadastro-button-container'>
-                <SprayButton text={"Enviar"} onClick={handleSubmit} />
+                <SprayButton text="Enviar" onClick={handleSubmit} isLoading={isLoading} />
             </div>
         </div>
     )

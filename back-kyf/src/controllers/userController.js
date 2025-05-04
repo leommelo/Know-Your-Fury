@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const Interesse = require('../models/Interesse');
 
+
+
 exports.createUser = async (req, res) => {
   const { cpf, nome, data_nascimento } = req.body;
 
@@ -57,3 +59,17 @@ exports.getUserById = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.uploadImage = async (req, res) => {
+  try {
+    const cpf_usuario = req.user.cpf; 
+    const fotoUrl = `uploads/usuarios/${req.file.filename}`;
+
+    await db.query("UPDATE usuarios SET foto_url = ? WHERE cpf = ?", [fotoUrl, cpf_usuario]);
+
+    res.status(200).json({ foto_url: fotoUrl });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erro: "Erro ao salvar imagem." });
+  }
+}

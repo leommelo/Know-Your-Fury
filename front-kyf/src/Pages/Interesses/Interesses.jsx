@@ -26,6 +26,7 @@ const LISTA_PADRAO_JOGOS = [
 const Interesses = () => {
     const navigate = useNavigate();
 
+    const [isLoading, setIsLoading] = useState(false);
     const [respostaEventos, setrespostaEventos] = useState(null);
     const [respostaProdutos, setRespostaProdutos] = useState(null);
     const [foto, setFoto] = useState(null);
@@ -43,18 +44,17 @@ const Interesses = () => {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
             })
-            console.log(response.data)
 
             const { jogos, eventos, compras } = response.data;
 
             if (jogos) {
                 const ordemRecebida = jogos.split(',');
-                const novaOrdem = ordemRecebida.map(nomeRecebido => 
+                const novaOrdem = ordemRecebida.map(nomeRecebido =>
                     listaJogos.find(jogo => jogo.nome === nomeRecebido)
                 ).filter(Boolean); // remove qualquer "undefined"
                 setListaJogos(novaOrdem);
             }
-            
+
 
             if (eventos) {
                 setrespostaEventos("sim");
@@ -83,7 +83,6 @@ const Interesses = () => {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
                 }
             });
-            console.log(response.data);
         } catch (error) {
             console.error("Erro ao salvar interesses:", error)
         }
@@ -92,15 +91,20 @@ const Interesses = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setIsLoading(true);
+
         const formData = {
             jogos: listaJogos.map(j => j.nome).join(','),
             eventos: eventosInputs.map(e => e.value).join(','),
             compras: produtosInputs.map(p => p.value).join(','),
             textos: ["amo a furia", "furia top 1", "fui demitido, to furioso hoje"]
         };
-        console.log(formData)
 
         await saveInteresses(formData);
+        if (foto) {
+            await handleSubmitFoto();
+        }
+        setIsLoading(false);
         navigate("/carteirinha")
     }
 
@@ -109,7 +113,21 @@ const Interesses = () => {
 
     }, []);
 
+    const handleSubmitFoto = async (e) => {
+        const formData = new FormData();
+        formData.append('foto', foto);
 
+        try {
+            const response = await axios.post("http://localhost:3000/usuarios/upload-imagem", formData, {
+                headers: {
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                    "Content-Type": "multipart/form-data"
+                }
+            });
+        } catch (error) {
+            console.error("Erro ao enviar foto:", error)
+        }
+    }
 
     return (
         <div className='interesses-page'>
@@ -119,7 +137,7 @@ const Interesses = () => {
                 <h2>Interesses:</h2>
                 <div className='interesses-forms'>
                     <p>Dê um rank para seus jogos favoritos:</p>
-                    <DragAndDropLista onListaAtualizada={setListaJogos} jogos={listaJogos}/>
+                    <DragAndDropLista onListaAtualizada={setListaJogos} jogos={listaJogos} />
                     <BlocoPergunta
                         pergunta="Participou de eventos de E-sports?"
                         name="evento-esports"
@@ -159,7 +177,6 @@ const Interesses = () => {
                                 setTextoFoto(file.name);
                             }}
                         />
-
                     </Button>
                     <p>Conecte-se em suas redes!</p>
                     <div className="grid-redes">
@@ -170,7 +187,7 @@ const Interesses = () => {
                     </div>
                 </div>
             </div>
-            <SprayButton text={"Confirmar envio"} onClick={handleSubmit} />
+            <SprayButton text={"Confirmar envio"} onClick={handleSubmit} isLoading={isLoading} />
         </div>
     )
 }

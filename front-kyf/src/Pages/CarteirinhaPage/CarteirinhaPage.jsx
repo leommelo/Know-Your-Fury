@@ -15,6 +15,8 @@ const CarteirinhaPage = () => {
     nome: '',
     data_nascimento: '',
     fandometro_score: 0,
+    foto_url: '',
+    id:'',
   })
 
   const handleDownload = async () => {
@@ -51,6 +53,7 @@ const CarteirinhaPage = () => {
 
   useEffect(() => {
     fetchUserData()
+    
   }, [])
 
   return (
@@ -59,7 +62,7 @@ const CarteirinhaPage = () => {
       <h1>Parabéns! Agora você é um fã real da FURIA!</h1>
       <h2>Baixe sua carteirinha:</h2>
       
-      <Carteirinha ref={carteirinhaRef} nome={user.nome} score={user.fandometro_score} nasc={user.data_nascimento}/>
+      <Carteirinha ref={carteirinhaRef} nome={user.nome} score={user.fandometro_score} nasc={user.data_nascimento} foto={user.foto_url} id={user.id}/>
       
       <SprayButton text={"Baixar Carteirinha"} onClick={handleDownload} />
     </div>
