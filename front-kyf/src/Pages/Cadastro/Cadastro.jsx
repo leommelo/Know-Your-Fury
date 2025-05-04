@@ -71,7 +71,7 @@ const Cadastro = () => {
     
     const saveUserData = async (userData) => {
         try{
-            const response = await axios.post("http://localhost:3000/usuarios", userData);
+            const response = await axios.post("https://know-your-fury-production.up.railway.app/usuarios", userData);
             console.log("Usuário salvo com sucesso:", response.data);
 
             if (response.data.token) {
