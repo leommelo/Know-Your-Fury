@@ -39,9 +39,9 @@ const CarteirinhaPage = () => {
       const userData = response.data;
 
       if (userData.data_nascimento) {
-        const data = new Date(userData.data_nascimento);
-        userData.data_nascimento = new Intl.DateTimeFormat('pt-BR').format(data); 
-      }
+        const [ano, mes, dia] = userData.data_nascimento.split('-');
+        userData.data_nascimento = `${dia}/${mes}/${ano}`; 
+      }      
 
       console.log(userData);
     
