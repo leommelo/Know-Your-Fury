@@ -1,5 +1,5 @@
 import React from 'react'
-import Torcida from '../../../public/torcida.png'
+import Torcida from '../../assets/torcida.png'
 import './Header.css'
 
 const Header = () => {
