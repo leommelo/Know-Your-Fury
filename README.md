@@ -1,6 +1,9 @@
 # Know Your Fury
 
-**Know Your Fury** é uma aplicação web que permite aos fãs da FURIA criar perfis personalizados, interagir com conteúdos exclusivos e obter uma carteirinha digital.
+**Know Your Fury** é uma aplicação web interativa criada para os fãs da FURIA.  
+Ela permite que você crie um perfil personalizado, explore conteúdos exclusivos e receba uma **carteirinha digital de torcedor**.
+
+O diferencial da plataforma é o uso de **Inteligência Artificial**, que analisa seus interesses, preferências e interações para calcular **o seu nível de fanatismo pela FURIA**, de forma dinâmica e personalizada.
 
 ## 🎨 Protótipo no Figma
 
