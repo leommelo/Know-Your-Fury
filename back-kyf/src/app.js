@@ -4,44 +4,36 @@ require('dotenv').config();
 const userRoutes = require('./routes/userRoutes');
 const interesseRoutes = require('./routes/interesseRoutes');
 const socialAnalysis = require('./routes/socialAnalysis');
+const cors = require('cors');
 const path = require('path');
 
-// ======== TODAS AS ORIGENS PERMITIDAS ========
-// Esta abordagem é mais permissiva, mas pode resolver problemas no Railway
-app.use((req, res, next) => {
-  // Permitir qualquer origem
-  res.header('Access-Control-Allow-Origin', '*');
-  
-  // Métodos permitidos
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  
-  // Cabeçalhos permitidos
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  
-  // Handle pre-flight
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-  
-  next();
-});
+const allowedOrigins = [
+  'https://know-your-fury.vercel.app',
+  'http://localhost:3000'
+];
 
-// Middlewares padrão
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-// Rotas estáticas
 const uploadsPath = path.join(__dirname, '..', 'uploads');
 app.use('/uploads', express.static(uploadsPath));
 
-// Rotas da API
 app.use('/usuarios', userRoutes);
 app.use('/interesses', interesseRoutes);
 app.use('/social', socialAnalysis);
 
-// Porta do servidor
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
-  console.log('CORS configurado para permitir qualquer origem');
 });
