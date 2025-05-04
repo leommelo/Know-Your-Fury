@@ -4,6 +4,7 @@ require('dotenv').config();
 const userRoutes = require('./routes/userRoutes');
 const interesseRoutes = require('./routes/interesseRoutes');
 const socialAnalysis = require('./routes/socialAnalysis');
+const fotoBase64Routes = require('./routes/fotoBase64Route');
 const cors = require('cors');
 const path = require('path');
 
@@ -32,6 +33,7 @@ app.use('/uploads', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*'); // ou um domínio específico
   next();
 }, express.static(uploadsPath));
+app.use('/imagens', fotoBase64Routes);
 
 
 app.use('/usuarios', userRoutes);
