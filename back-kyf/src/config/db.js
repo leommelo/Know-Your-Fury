@@ -1,9 +1,7 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
-// Usar a URL completa de conexão
-const connectionString = process.env.DATABASE_URL || 
-  `mysql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`;
+const connectionString = process.env.MYSQL_URL;
 
 const pool = mysql.createPool(connectionString);
 
