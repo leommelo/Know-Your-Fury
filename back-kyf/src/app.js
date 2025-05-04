@@ -28,11 +28,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 const uploadsPath = path.join(__dirname, '..', 'uploads');
-app.use('/uploads', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // ou um domínio específico
-  next();
-}, express.static(uploadsPath));
-
+app.use('/uploads', express.static(uploadsPath));
 
 app.use('/usuarios', userRoutes);
 app.use('/interesses', interesseRoutes);
