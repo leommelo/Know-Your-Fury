@@ -20,14 +20,32 @@ const CarteirinhaPage = () => {
   })
 
   const handleDownload = async () => {
-    const canvas = await html2canvas(carteirinhaRef.current);
-    const dataURL = canvas.toDataURL('image/png');
+    const canvas = await html2canvas(carteirinhaRef.current, {
+      useCORS: true
+    });
 
-    const link = document.createElement('a');
-    link.href = dataURL;
-    link.download = 'carteirinha-furia.png';
-    link.click();
+    const ctx = canvas.getContext('2d');
+    const avatar = document.getElementById('avatar-furia');
+    const avatarImg = new Image();
+    avatarImg.crossOrigin = 'anonymous'; // necessário se a imagem ainda estiver externa
+    avatarImg.src = avatar.src;
+
+    avatarImg.onload = () => {
+      // desenhe a imagem em cima do canvas no local correto (ajuste as coords conforme layout)
+      ctx.drawImage(avatarImg, canvas.width / 2 - 50, 90, 100, 100); // exemplo
+
+      const dataURL = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.href = dataURL;
+      link.download = 'carteirinha-furia.png';
+      link.click();
+    };
+
+    avatarImg.onerror = () => {
+      alert("Erro ao carregar imagem do avatar.");
+    };
   };
+
 
   const fetchUserData = async () => {
     try {
@@ -55,22 +73,6 @@ const CarteirinhaPage = () => {
     fetchUserData()
 
   }, [])
-
-  const [fotoBase64, setFotoBase64] = useState(null);
-
-  useEffect(() => {
-    const fetchBase64 = async () => {
-      try {
-        const response = await fetch(`https://know-your-fury-production-6ce7.up.railway.app/imagens/foto-base64/${user.foto_url}`);
-        const data = await response.json();
-        setFotoBase64(data.base64);
-      } catch (err) {
-        console.error('Erro ao carregar imagem base64:', err);
-      }
-    };
-
-    fetchBase64();
-  }, [user.foto_url]);
 
   return (
     <div className='carteirinha-page'>

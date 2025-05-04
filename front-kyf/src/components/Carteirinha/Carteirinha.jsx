@@ -41,11 +41,19 @@ const Carteirinha = forwardRef(({ nome, score, foto, nasc, id }, ref) => {
         </Typography>
 
         <Avatar
-          src={`https://know-your-fury-production-6ce7.up.railway.app/${foto}`}
-          crossOrigin="anonymous"
+          id="avatar-furia"
+          src={foto}
           alt={nome}
-          sx={{ width: 100, height: 100, margin: '0 auto', mb: 2, border: '2px solid #F6FF00' }}
+          sx={{
+            width: 100,
+            height: 100,
+            margin: '0 auto',
+            mb: 2,
+            border: '2px solid #F6FF00',
+            visibility: 'hidden' // <- importante
+          }}
         />
+
 
         <Typography variant="body1" sx={{ textAlign: "start", ml: 2, fontFamily: 'Koulen' }}><strong>Nome:</strong> {nome}</Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 2, }}>
