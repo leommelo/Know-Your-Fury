@@ -7,7 +7,22 @@ const socialAnalysis = require('./routes/socialAnalysis');
 const cors = require('cors');
 const path = require('path');
 
-app.use(cors());
+const allowedOrigins = [
+  'https://know-your-fury.vercel.app', // seu front-end em produção
+  'http://localhost:3000'              // útil para desenvolvimento local
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true 
+}));
+
 app.use(express.json());
 
 const uploadsPath = path.join(__dirname, '..', 'uploads');
