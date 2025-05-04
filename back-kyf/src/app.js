@@ -9,7 +9,8 @@ const path = require('path');
 
 const allowedOrigins = [
   'https://know-your-fury.vercel.app',
-  'http://localhost:3000'
+  'http://localhost:3000',
+  'http://localhost:5173'
 ];
 
 const corsOptions = {
