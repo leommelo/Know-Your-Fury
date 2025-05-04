@@ -39,9 +39,10 @@ const CarteirinhaPage = () => {
       const userData = response.data;
 
       if (userData.data_nascimento) {
-        const [ano, mes, dia] = userData.data_nascimento.split('-');
-        userData.data_nascimento = `${dia}/${mes}/${ano}`; 
-      }      
+        const dataApenas = userData.data_nascimento.split('T')[0]; // "2002-11-20"
+        const [ano, mes, dia] = dataApenas.split('-');
+        userData.data_nascimento = `${dia}/${mes}/${ano}`; // "20/11/2002"
+      }
 
       console.log(userData);
     
