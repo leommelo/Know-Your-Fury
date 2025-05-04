@@ -31,7 +31,7 @@ const CarteirinhaPage = () => {
 
   const fetchUserData = async () => {
     try{
-      const response = await axios.get('http://localhost:3000/usuarios/perfil',{
+      const response = await axios.get('https://know-your-fury-production-6ce7.up.railway.app/usuarios/perfil',{
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

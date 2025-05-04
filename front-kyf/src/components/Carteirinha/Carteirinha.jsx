@@ -41,7 +41,7 @@ const Carteirinha = forwardRef(({ nome, score, foto, nasc, id }, ref) => {
         </Typography>
 
         <Avatar
-          src={`http://localhost:3000/${foto}`}
+          src={`https://know-your-fury-production-6ce7.up.railway.app/${foto}`}
           alt={nome}
           sx={{ width: 100, height: 100, margin: '0 auto', mb: 2, border: '2px solid #F6FF00' }}
         />

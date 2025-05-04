@@ -39,7 +39,7 @@ const Interesses = () => {
 
     const fetchInteresses = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/interesses', {
+            const response = await axios.get('https://know-your-fury-production-6ce7.up.railway.app/interesses', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -78,7 +78,7 @@ const Interesses = () => {
 
     const saveInteresses = async (formData) => {
         try {
-            const response = await axios.post('http://localhost:3000/social/fandometro', formData, {
+            const response = await axios.post('https://know-your-fury-production-6ce7.up.railway.app/social/fandometro', formData, {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
                 }
@@ -118,7 +118,7 @@ const Interesses = () => {
         formData.append('foto', foto);
 
         try {
-            const response = await axios.post("http://localhost:3000/usuarios/upload-imagem", formData, {
+            const response = await axios.post("https://know-your-fury-production-6ce7.up.railway.app/usuarios/upload-imagem", formData, {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`,
                     "Content-Type": "multipart/form-data"
