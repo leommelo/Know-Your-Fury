@@ -2,6 +2,13 @@
 
 **Know Your Fury** é uma aplicação web que permite aos fãs da FURIA criar perfis personalizados, interagir com conteúdos exclusivos e obter uma carteirinha digital.
 
+## 🎨 Protótipo no Figma
+
+Você pode visualizar o protótipo do KnowYourFury no Figma clicando no link abaixo:
+
+🔗 [Acessar protótipo no Figma](www.figma.com/design/Ms4a2hmAw2jYM4MZTTnQLh/Know-Your-Fury?node-id=0-1&p=f&t=8IQAdJVHasDVgG97-0)
+
+
 ## 🗂 Estrutura do Projeto
 
 ```
