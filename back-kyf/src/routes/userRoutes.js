@@ -5,6 +5,7 @@ const interesseController = require('../controllers/interesseController');
 const authenticate = require('../middlewares/authMiddleware');
 
 router.post('/', userController.createUser);
+router.get('/perfil', authenticate, userController.getUserById);
 router.get('/', userController.getUsers);
 
 module.exports = router;

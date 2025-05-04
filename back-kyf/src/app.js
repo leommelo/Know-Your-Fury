@@ -4,7 +4,9 @@ require('dotenv').config();
 const userRoutes = require('./routes/userRoutes');
 const interesseRoutes = require('./routes/interesseRoutes');
 const socialAnalysis = require('./routes/socialAnalysis');
+const cors = require('cors');
 
+app.use(cors());
 app.use(express.json());
 
 // Rotas

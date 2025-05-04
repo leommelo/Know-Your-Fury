@@ -19,6 +19,7 @@
     "@mui/icons-material": "^7.0.2",
     "@mui/lab": "^7.0.0-beta.11",
     "@mui/material": "^7.0.2",
+    "axios": "^1.9.0",
     "date-fns": "^4.1.0",
     "fastest-levenshtein": "^1.0.16",
     "html2canvas": "^1.4.1",

@@ -3,7 +3,7 @@ const Interesse = require('../models/Interesse');
 const User = require('../models/User');
 
 exports.createInteresse = async (req, res) => {
-  const { jogos, eventos, compras } = req.body;
+  let { jogos, eventos, compras } = req.body;
   const cpf_usuario = req.user.cpf; 
 
   try {
@@ -11,6 +11,10 @@ exports.createInteresse = async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: 'Usuário não encontrado' });
     }
+
+    if (Array.isArray(jogos)) jogos = jogos.join(', ');
+    if (Array.isArray(eventos)) eventos = eventos.join(', ');
+    if (Array.isArray(compras)) compras = compras.join(', ');
 
     await Interesse.createOrUpdate(cpf_usuario, jogos, eventos, compras);
 

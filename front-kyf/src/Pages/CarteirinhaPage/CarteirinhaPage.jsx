@@ -1,12 +1,21 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState, useEffect, use } from 'react'
 import './CarteirinhaPage.css'
 import Carteirinha from '../../components/Carteirinha/Carteirinha'
 import Header from '../../components/Header/Header'
 import SprayButton from '../../components/SprayButton/SprayButton'
 import html2canvas from 'html2canvas'
+import axios from 'axios'
+
 
 const CarteirinhaPage = () => {
   const carteirinhaRef = useRef();
+
+  const [user, setUser] = useState({
+    cpf: '',
+    nome: '',
+    data_nascimento: '',
+    fandometro_score: 0,
+  })
 
   const handleDownload = async () => {
     const canvas = await html2canvas(carteirinhaRef.current);
@@ -18,13 +27,39 @@ const CarteirinhaPage = () => {
     link.click();
   };
 
+  const fetchUserData = async () => {
+    try{
+      const response = await axios.get('http://localhost:3000/usuarios/perfil',{
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      const userData = response.data;
+
+      if (userData.data_nascimento) {
+        const data = new Date(userData.data_nascimento);
+        userData.data_nascimento = new Intl.DateTimeFormat('pt-BR').format(data); 
+      }
+
+      console.log(userData);
+    
+      setUser(userData);
+    }catch(error){
+      console.error('Erro ao buscar dados do usuário:', error);
+    }
+  }
+
+  useEffect(() => {
+    fetchUserData()
+  }, [])
+
   return (
     <div className='carteirinha-page'>
       <Header />
       <h1>Parabéns! Agora você é um fã real da FURIA!</h1>
       <h2>Baixe sua carteirinha:</h2>
       
-      <Carteirinha ref={carteirinhaRef} />
+      <Carteirinha ref={carteirinhaRef} nome={user.nome} score={user.fandometro_score} nasc={user.data_nascimento}/>
       
       <SprayButton text={"Baixar Carteirinha"} onClick={handleDownload} />
     </div>

@@ -8,6 +8,7 @@ import { IMaskInput } from 'react-imask'
 import { extractTextFromImage, validateRGData } from '../../Utils/ocr';
 import { convertToGrayscale } from '../../Utils/imageUtils';
 import SprayButton from '../../components/SprayButton/SprayButton'
+import axios from 'axios';
 
 const Cadastro = () => {
     const navigate = useNavigate();
@@ -17,9 +18,9 @@ const Cadastro = () => {
     const [textoFrente, setTextoFrente] = useState('Frente do RG');
     const [textoVerso, setTextoVerso] = useState('Verso do RG');
     const [formData, setFormData] = useState({
-        name: '',
+        nome: '',
         cpf: '',
-        nascimento: ''
+        data_nascimento: ''
     });
 
     const handleInputChange = (e) => {
@@ -41,22 +42,48 @@ const Cadastro = () => {
 
         console.log("Dados do formulário:", formData);
 
-        const rgFrentePB = await convertToGrayscale(rgFrente);
-        const rgVersoPB = await convertToGrayscale(rgVerso);
-
-        const textoFrente = await extractTextFromImage(rgFrentePB);
-        const textoVerso = await extractTextFromImage(rgVersoPB);
-        console.log("Texto do verso:", textoVerso)
+        const textoFrente = await extractTextFromImage(rgFrente);
+        const textoVerso = await extractTextFromImage(rgVerso);
+        console.log("Texto do verso:", textoFrente)
         const textoCompleto = `${textoFrente} ${textoVerso}`;
 
-        if (validateRGData(textoCompleto, formData.cpf, formData.name)) {
+        const formDataFormatado = {
+            ...formData,
+            data_nascimento: formatarData(formData.data_nascimento),
+        };    
+
+        if (validateRGData(textoCompleto, formData.cpf, formData.nome)) {
             alert("Documento válido! Prosseguir com o cadastro.");
-            navigate("/interesses")
+            try{
+                await saveUserData(formDataFormatado);
+                navigate("/interesses")
+            }catch(error){
+                console.error("Erro ao salvar usuário:", error)
+            }
+            
         } else {
             alert("Não foi possível validar o RG. Verifique a imagem.");
         }
     };
+    
+    const saveUserData = async (userData) => {
+        try{
+            const response = await axios.post("http://localhost:3000/usuarios", userData);
+            console.log("Usuário salvo com sucesso:", response.data);
 
+            if (response.data.token) {
+                localStorage.setItem("token", response.data.token);
+            }
+
+        } catch (error) {
+            console.error("Erro ao salvar usuário:", error)
+        }
+    }
+
+    const formatarData = (data) => {
+        const [dia, mes, ano] = data.split('/');
+        return `${ano}-${mes}-${dia}`;
+    };
 
     return (
         <div className='cadastro-page'>
@@ -65,8 +92,8 @@ const Cadastro = () => {
             <div className='cadastro-container'>
                 <h2>Cadastro:</h2>
                 <form className='cadastro-form'>
-                    <label htmlFor="name">Nome:</label>
-                    <input type="text" id="name" name="name" placeholder='Nome' onChange={handleInputChange} />
+                    <label htmlFor="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" placeholder='Nome' onChange={handleInputChange} />
 
                     <label htmlFor="cpf">CPF:</label>
                     <IMaskInput
@@ -78,14 +105,14 @@ const Cadastro = () => {
                         onAccept={(value) => handleInputChange({ target: { name: 'cpf', value } })}
                     />
 
-                    <label htmlFor="nascimento">Data de Nascimento:</label>
+                    <label htmlFor="data_nascimento">Data de Nascimento:</label>
                     <IMaskInput
                         mask="00/00/0000"
-                        id="nascimento"
-                        name="nascimento"
+                        id="data_nascimento"
+                        name="data_nascimento"
                         type="text"
                         placeholder="DD/MM/AAAA"
-                        onAccept={(value) => handleInputChange({ target: { name: 'nascimento', value } })}
+                        onAccept={(value) => handleInputChange({ target: { name: 'data_nascimento', value } })}
                     />
 
                     <label>Documento:</label>

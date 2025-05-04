@@ -14,7 +14,7 @@ const Interesse = {
        WHERE u.cpf = ?`,
       [cpf]
     );
-    return rows[0]; // Retorna o primeiro resultado (usuário + interesses)
+    return rows[0];
   },
 
   createOrUpdate: async (cpf, jogos, eventos, compras) => {

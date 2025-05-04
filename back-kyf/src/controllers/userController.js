@@ -44,3 +44,16 @@ exports.getUsers = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.getUserById = async (req, res) => {
+  try {
+    const cpf_usuario = req.user.cpf; 
+    const user = await User.findByCpf(cpf_usuario);
+    if (!user) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

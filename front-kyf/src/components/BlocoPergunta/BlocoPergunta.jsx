@@ -10,7 +10,7 @@ const CustomRadio = styled(Radio)({
   },
 });
 
-const BlocoPergunta = ({ pergunta, name, resposta, setResposta, placeholder }) => {
+const BlocoPergunta = ({ pergunta, name, resposta, setResposta, placeholder, inputs, setInputs }) => {
   const handleChange = (e) => {
     setResposta(e.target.value);
   };
@@ -18,21 +18,21 @@ const BlocoPergunta = ({ pergunta, name, resposta, setResposta, placeholder }) =
   return (
     <>
       <p>{pergunta}</p>
-      <RadioGroup row name={name} value={resposta} onChange={handleChange} sx={{width: "100%"}}>
-        <FormControlLabel
-          value="sim"
-          control={<CustomRadio />}
-          label="Sim"
-        />
-        <FormControlLabel
-          value="nao"
-          control={<CustomRadio />}
-          label="Não"
-        />
+      <RadioGroup row name={name} value={resposta} onChange={handleChange} sx={{ width: "100%" }}>
+        <FormControlLabel value="sim" control={<CustomRadio />} label="Sim" />
+        <FormControlLabel value="nao" control={<CustomRadio />} label="Não" />
       </RadioGroup>
-      {resposta === "sim" && <InputAdd placeholder={placeholder} />}
+      {resposta === "sim" && (
+        <InputAdd
+          placeholder={placeholder}
+          inputs={inputs}
+          setInputs={setInputs}
+        />
+      )}
     </>
   );
 };
+
+
 
 export default BlocoPergunta;

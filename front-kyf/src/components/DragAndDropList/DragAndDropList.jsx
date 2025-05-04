@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   DndContext,
   closestCenter,
@@ -14,16 +14,8 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-const itensIniciais = [
-  { id: "1", nome: "League of Legends" },
-  { id: "2", nome: "Valorant" },
-  { id: "3", nome: "CS2" },
-  { id: "4", nome: "Rocket League" },
-  { id: "5", nome: "Rainbow Six" },
-];
-
-export default function DragAndDropLista({onListaAtualizada }) {
-  const [itens, setItens] = useState(itensIniciais);
+export default function DragAndDropLista({ onListaAtualizada, jogos }) {
+  const [itens, setItens] = useState(jogos);
 
   const sensors = useSensors(useSensor(PointerSensor));
 
@@ -34,12 +26,16 @@ export default function DragAndDropLista({onListaAtualizada }) {
     const oldIndex = itens.findIndex((i) => i.id === active.id);
     const newIndex = itens.findIndex((i) => i.id === over.id);
 
-    setItens((items) => {
-      const novaLista = arrayMove(items, oldIndex, newIndex);
-      onListaAtualizada?.(novaLista); 
-      return novaLista;
-    });
+    setItens((items) => arrayMove(items, oldIndex, newIndex));
   };
+
+  useEffect(() => {
+    onListaAtualizada(itens);
+  }, [itens, onListaAtualizada]);
+
+  useEffect(() => {
+    setItens(jogos);
+  }, [jogos]);
 
   return (
     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>

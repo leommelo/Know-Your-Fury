@@ -1,10 +1,17 @@
 import React, { forwardRef } from 'react';
 import {
-  Card, Typography, Avatar, Button, Box
+  Card, Typography, Avatar, Box
 } from '@mui/material';
 import LogoFuria from '../../assets/LogoFuria.svg'
 
-const Carteirinha = forwardRef(({ nome, score, foto }, ref) => {
+const Carteirinha = forwardRef(({ nome, score, foto, nasc }, ref) => {
+
+  const getRank = (score) => {
+    if (score > 80) return 'Diamante';
+    if (score > 60) return 'Gold';
+    if (score > 40) return 'Prata';
+    return 'Bronze';
+  };
 
   return (
     <>
@@ -40,7 +47,11 @@ const Carteirinha = forwardRef(({ nome, score, foto }, ref) => {
         />
 
         <Typography variant="body1" sx={{textAlign: "start", ml:2, fontFamily: 'Koulen'}}><strong>Nome:</strong> {nome}</Typography>
-        <Typography variant="body1" sx={{textAlign: "start", ml:2, fontFamily: 'Koulen'}}><strong>Rank:</strong> {score}</Typography>
+        <Box sx={{display:'flex',  alignItems: 'center', mt: 2, }}>
+        <Typography variant="body1" sx={{ ml:2, fontFamily: 'Koulen', mr: 13}}><strong>Rank:</strong> {getRank(score)}</Typography>
+        <Typography variant="body1" sx={{ ml:2, fontFamily: 'Koulen'}}><strong>Nasc:</strong> {nasc}</Typography>
+        </Box>
+        
       </Card>
     </>
   );
