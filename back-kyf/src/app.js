@@ -23,6 +23,8 @@ app.use(cors({
   credentials: true 
 }));
 
+app.options('*', cors()); // responde corretamente às requisições OPTIONS
+
 app.use(express.json());
 
 const uploadsPath = path.join(__dirname, '..', 'uploads');
