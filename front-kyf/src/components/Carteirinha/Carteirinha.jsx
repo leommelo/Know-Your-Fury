@@ -32,7 +32,6 @@ const Carteirinha = forwardRef(({ nome, score, foto, nasc, id }, ref) => {
       >
         <img
           src={LogoFuria}
-          crossOrigin="anonymous"
           alt="Logo FURIA"
           style={{ width: 60, position: 'absolute', top: 16, left: 16 }}
         />
@@ -43,6 +42,7 @@ const Carteirinha = forwardRef(({ nome, score, foto, nasc, id }, ref) => {
 
         <Avatar
           src={`https://know-your-fury-production-6ce7.up.railway.app/${foto}`}
+          crossOrigin="anonymous"
           alt={nome}
           sx={{ width: 100, height: 100, margin: '0 auto', mb: 2, border: '2px solid #F6FF00' }}
         />
