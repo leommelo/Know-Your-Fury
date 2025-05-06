@@ -9,7 +9,7 @@ O diferencial da plataforma é o uso de **Inteligência Artificial**, que analis
 
 Você pode visualizar o protótipo do KnowYourFury no Figma clicando no link abaixo:
 
-🔗 [Acessar protótipo no Figma](www.figma.com/design/Ms4a2hmAw2jYM4MZTTnQLh/Know-Your-Fury?node-id=0-1&p=f&t=8IQAdJVHasDVgG97-0)
+🔗 [Acessar protótipo no Figma](https://www.figma.com/design/Ms4a2hmAw2jYM4MZTTnQLh/Know-Your-Fury?m=auto&t=BEfdaso2xbz6DoDP-6)
 
 
 ## 🗂 Estrutura do Projeto
